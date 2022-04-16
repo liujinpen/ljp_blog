@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tom.png">
+  <link rel="icon" href="/img/tom.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta name="description" content="前言在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。 目录 校准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcMap根据行政图校准延安市乡镇shp行政边界">
+<meta property="og:url" content="http://example.com/2021/12/24/ArcMap%E6%A0%B9%E6%8D%AE%E8%A1%8C%E6%94%BF%E5%9B%BE%E6%A0%A1%E5%87%86shp%E8%A1%8C%E6%94%BF%E8%BE%B9%E7%95%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。 目录 校准">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.1.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.2.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.3.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.4.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/添加控制点.gif">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.5.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.6.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.7.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.8.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.2.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.3.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.4.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.5.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.6.png">
+<meta property="article:published_time" content="2021-12-24T00:53:45.000Z">
+<meta property="article:modified_time" content="2021-12-24T07:43:35.099Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ArcGIS">
+<meta property="article:tag" content="行政边界">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.1.png">
+  
+  <title>ArcMap根据行政图校准延安市乡镇shp行政边界 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <!-- <strong>L金盆</strong> -->
+      <img src="/img/jinpen.png" srcset="/img/loading.gif" lazyload height="30px" width="ml-auto">
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/earth.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ArcMap根据行政图校准延安市乡镇shp行政边界">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-24 08:53" pubdate>
+        2021年12月24日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ArcMap根据行政图校准延安市乡镇shp行政边界</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：4 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
+<li>校准行政区划图坐标</li>
+<li>调整shp行政边界</li>
+<li>导出数据</li>
+<li>展示</li>
+</ol>
+<h1 id="1-校准行政区划图坐标"><a href="#1-校准行政区划图坐标" class="headerlink" title="1. 校准行政区划图坐标"></a>1. 校准行政区划图坐标</h1><h2 id="1-1-添加图层"><a href="#1-1-添加图层" class="headerlink" title="1.1 添加图层"></a>1.1 添加图层</h2><p>这里分别添加未处理过的shp文件和行政区划图<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.1.png" srcset="/img/loading.gif" lazyload/><br>这时点击下面图层看不到行政区划图是正常的，因为他的坐标可能不视野范围内，只需要右键-&gt;缩放至图层即可<br><img height="400" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.2.png" srcset="/img/loading.gif" lazyload/></p>
+<h2 id="1-2-创建控制点进行校准"><a href="#1-2-创建控制点进行校准" class="headerlink" title="1.2 创建控制点进行校准"></a>1.2 创建控制点进行校准</h2><p>选择到行政区划图层，右键标题栏空白处，调出地理配准工具<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.3.png" srcset="/img/loading.gif" lazyload/>  </p>
+<p>地理配准工具中我们主要使用的一个操作就是创建控制点<br><img height="150" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.4.png" srcset="/img/loading.gif" lazyload/><br>简单理解就是在需要调整坐标的图层上先创建一个点，然后链接到坐标正确的图层的对应位置，ArcMap会自动帮我们调整，调整使用的算法可以自行选择一个效果最好的。</p>
+<img style="margin-left:35px !important;" height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/添加控制点.gif" srcset="/img/loading.gif" lazyload/>  
+
+<p>通过上面的操作可以看到，至少需要两对控制点以上，才能大致校准行政图位置。当添加前几个控制点无法直接靠移动鼠标找到点时，也可以右键缩放到图层进行选点。接下来就是添加更多的控制点，尽量选取边角和中心位置，可以减小误差。</p>
+<p>下图是已经添加了4对控制点的地图，这时候上层的shp会挡住一部分区划图，影响选点。右键图层属性，设置合适的透明度。也可以更改shp面显示颜色，直接设置为空心（这里因为线条较多，暂时不设置）<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.5.png" srcset="/img/loading.gif" lazyload/></p>
+<p>继续添加控制点，尽可能使点均匀的分布在整个地图上，当发现继续添加点仍不能很好的校准时，就需要选择另外的校准算法了，点击链接表可以查看当前所有的控制点，可以删除残差较大的点，当控制点的数量足够多时，选择三阶多项式会有非常好的效果，这里我添加了21对控制点，可以看到最终的效果已经非常好了，shp图层的边界线和行政区划图几乎看不出明显的错位。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.6.png" srcset="/img/loading.gif" lazyload/></p>
+<h2 id="1-3-保存校准后的行政区划图"><a href="#1-3-保存校准后的行政区划图" class="headerlink" title="1.3 保存校准后的行政区划图"></a>1.3 保存校准后的行政区划图</h2><p>要注意的是，行政图校准后并没有改变原图。因此，想要将校准后的行政图进行保存，需要导出，格式也可以自行选择，不同格式会有一定的画质损失。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.7.png" srcset="/img/loading.gif" lazyload/></p>
+<h1 id="2-调整shp行政边界"><a href="#2-调整shp行政边界" class="headerlink" title="2. 调整shp行政边界"></a>2. 调整shp行政边界</h1><h1 id="2-1-分割面"><a href="#2-1-分割面" class="headerlink" title="2.1 分割面"></a>2.1 分割面</h1><p>经过导出，调整图层顺序后，较浅的黑色线条即为最终需要的边界。从下图可以看出，吴起街道占据了其他两个镇的部分地区，需要进行调整。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.8.png" srcset="/img/loading.gif" lazyload/>  </p>
+<p>右键shp图层-&gt;编辑要素，或是点击编辑器-&gt;开始编辑，选中需要分割的面，选择编辑器中的面裁切工具，按照需要的边界开始描点，完成后按F2。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.2.png" srcset="/img/loading.gif" lazyload/></p>
+<h1 id="2-2-合并面"><a href="#2-2-合并面" class="headerlink" title="2.2 合并面"></a>2.2 合并面</h1><p>经过裁切面后，从吴起街道中分出了一小块区域，这个区域在行政区画图中属于铁边城镇，因此需要合并。选中两个面，点击编辑器中的合并选项即可。<br><img height="350"  src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.3.png" srcset="/img/loading.gif" lazyload/></p>
+<p>同样的，经过相同的操作完成吴仓堡镇的调整，这样我们就得到了与行政区划图相同的shp数据。基本的思路就是分割大的面，将新增的面合并到需要的面中。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.4.png" srcset="/img/loading.gif" lazyload/>  </p>
+<p><strong>在完成所有的修改后，不要忘记点击编辑器中的保存编辑。</strong></p>
+<h1 id="3-导出数据"><a href="#3-导出数据" class="headerlink" title="3. 导出数据"></a>3. 导出数据</h1><p>按照需要可以自行导出处理后的数据，本文为了对每个乡镇单独进行显示，选择批量导出。具体的分割字段要以属性表中为准。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.5.png" srcset="/img/loading.gif" lazyload/></p>
+<p>将导出的全部shp文件导入<a target="_blank" rel="noopener" href="https://mapshaper.org/">mapshaper</a>中，再导出geojson格式的数据。</p>
+<h1 id="4-展示"><a href="#4-展示" class="headerlink" title="4. 展示"></a>4. 展示</h1><p>geojson格式的数据可以直接使用高德api进行显示，当然在显示之前还需要将GPS坐标转换为火星坐标，具体的方法参照文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_29675423/article/details/87879440">python-GPS坐标转火星坐标</a>。显示效果如下，可以看出数据基本吻合。<br><img height="350" src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.6.png" srcset="/img/loading.gif" lazyload/></p>
+<blockquote>
+<p>参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ganlan1014/article/details/76356013">ArcGis地理配准步骤</a></li>
+<li><a target="_blank" rel="noopener" href="https://malagis.com/arcgis-arcmap-selection-factors.html">如何多选面要素</a></li>
+<li><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/5d368d1e3abc977e60c057d6.html">ArcGis如何合并面</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19599645/article/details/78541810">ArcGis处理公共边</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1a76f34e3788">ArcGis面公共边问题</a></li>
+</ul>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%9C%B0%E5%9B%BE/">地图</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/ArcGIS/">ArcGIS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%A1%8C%E6%94%BF%E8%BE%B9%E7%95%8C/">行政边界</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/24/Windows-Terminal%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows Terminal安装与配置</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/16/nginx-%E5%9B%BE%E7%89%87%E7%AD%89%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                        <span class="hidden-mobile">nginx-图片等静态资源访问解决方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

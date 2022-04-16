@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tom.png">
+  <link rel="icon" href="/img/tom.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta name="description" content="简介AutoHotKey简称AHK，是一个脚本语言，可以通过编写脚本执行一些自动化任务，进行按键映射、控制鼠标、管理进程、管理窗口等等，太多了，第一次接触这个软件是看到少数派的一篇文章：如何在打字时，快速移动光标？我整理的一套高效键盘映射方案 ，当时就感觉到这是一个极其强大的工具。在经过两年多的使用和修改后，这个软件已经成了脱离不了的东西。目前我使用到的功能和特性只是冰山一角，但是对效率的提升肉眼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoHotKey-提高效率的神器">
+<meta property="og:url" content="http://example.com/2021/11/06/AutoHotKey-%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介AutoHotKey简称AHK，是一个脚本语言，可以通过编写脚本执行一些自动化任务，进行按键映射、控制鼠标、管理进程、管理窗口等等，太多了，第一次接触这个软件是看到少数派的一篇文章：如何在打字时，快速移动光标？我整理的一套高效键盘映射方案 ，当时就感觉到这是一个极其强大的工具。在经过两年多的使用和修改后，这个软件已经成了脱离不了的东西。目前我使用到的功能和特性只是冰山一角，但是对效率的提升肉眼">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106160835.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106162819.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106163246.png">
+<meta property="article:published_time" content="2021-11-06T07:27:14.000Z">
+<meta property="article:modified_time" content="2021-11-10T09:47:15.971Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="效率提高">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106160835.png">
+  
+  <title>AutoHotKey-提高效率的神器 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <!-- <strong>L金盆</strong> -->
+      <img src="/img/jinpen.png" srcset="/img/loading.gif" lazyload height="30px" width="ml-auto">
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/earth.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="AutoHotKey-提高效率的神器">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-06 15:27" pubdate>
+        2021年11月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">AutoHotKey-提高效率的神器</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：5 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>AutoHotKey简称AHK，是一个脚本语言，可以通过编写脚本执行一些自动化任务，进行按键映射、控制鼠标、管理进程、管理窗口等等，太多了，第一次接触这个软件是看到少数派的一篇文章：<a target="_blank" rel="noopener" href="https://sspai.com/post/57157">如何在打字时，快速移动光标？我整理的一套高效键盘映射方案 </a>，当时就感觉到这是一个极其强大的工具。在经过两年多的使用和修改后，这个软件已经成了脱离不了的东西。目前我使用到的功能和特性只是冰山一角，但是对效率的提升肉眼可见，或者说使用电脑的幸福感大大提高。👻可惜只能在Win平台使用（这玩意儿甚至成了我以后是否会买mac的一个重要因素）。</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><h2 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h2><p>AHK解决了几个电脑使用的痛点，当然如果平时不是很注意，或者没有对比体验，或者没有亲自上手使用，很难感同身受。</p>
+<p><strong>1. 方向键</strong></p>
+<ul>
+<li>方向键是文字编辑时重度使用的按键（码字，写代码，写论文等），但是方向键并不在字母区，这就导致每一次移动光标，你都需要把手从字母区移开，当然还得再移回去，这个过程无形中打断了本应该流畅的输入，浪费时间不说，主要是累。特别是当你使用轻薄本上的半高方向键，（就是上下方向键合并成一个的那种，什么反人类设计👎按一次让人恼火一次）。<ul>
+<li>文字编辑：在你输入成对的符号时，比如引号，小括号，大括号，书名号，如果编辑器不支持符号补全和光标自动居中，那么你打完两个符号后，光标停在末尾，你需要按左方向键移动光标到两个符号中间，再接着输入，输入完后，你需要再按一次右方向键。</li>
+<li>写代码：虽然现在的IDE基本已经支持符号补全和光标居中（这也侧面说明了手动补全符号和移动光标是一件麻烦的事），甚至在VS中，当要结束一个语句时，你不需要把光标移动到末尾。<code>String str = new String(s|)</code>当你输入完s后，不需要移动光标到末尾打出一个分号，直接反手一个分号，VS会帮你自动补全到语句的末尾–&gt;<code>System.out.println(s);|</code>（不愧是宇宙最强IDE😆），（我发现IDEA在2021年9月的新版中也已经支持这个功能）。<br>但是这种情况只在你毫无破绽的连续输入下有效，要是你发现前面打错了，光标移动回去修改，或者是直接点击鼠标到别的地方，就不会帮你把分号放置到行尾了。同样，遇到<code>System.out.println(&quot;xxx|&quot;)</code>这种需要包裹在引号中的句子时，你还是得老老实实自己移动到行尾进行输入，不然就会把分号包含在引号中。</li>
+</ul>
+</li>
+</ul>
+<p class="note note-success"><strong>使用AHK后：摁住空格键，此时 i, j, k, l 四个键负责上、左、下、右，你只需要把手放在键盘上就知道这个位置是非常符合直觉的，在用正确指法打字的情况下，右手不需要移动，只需要动动手指头就能控制方向</strong></p>
+
+<p><strong>2. 行首行尾</strong></p>
+<ul>
+<li>Home和End这两个按键日常我几乎不会使用，因为它真的太远了。但是不代表把光标移动到行首和行尾这个功能不好用，相反，在用了AHK之后，这两个操作的使用非常频繁：<ul>
+<li>写代码移动到行尾输入分号</li>
+<li>移动到行尾输入回车</li>
+<li>需要修改一处文字时，快速移动到距离文字最近的地方</li>
+<li>在修改完内容后，快速定位到行尾继续输入，而不是用鼠标定位</li>
+<li>快速移动到行首/行尾删除前面/后面多余的字符</li>
+<li>Shift+Home，选中从当前光标开始到行首的所有字符</li>
+<li>Shift+End，选中从当前光标开始到行尾的所有字符  </li>
+</ul>
+</li>
+</ul>
+<p class="note note-success"><strong>使用AHK后：用空格+N映射Home键，空格+M映射End键，是的，N键和M键都在定位键J的下方，可以盲按，写代码再也不用摁方向键再输入分号了（Python：“啥是分号？”🙄）。空格+F+M实现选中一行，原理是摁下组合键后，先光标移动到行尾，再执行Shift+Home。</strong></p>
+
+<p><strong>3. 逗号和句号</strong></p>
+<ul>
+<li>两个高频使用的符号，不管是在文字编辑或者写代码中。按道理说这两个按键的位置没有Home和End那么不堪，但是用起来还是不舒服，不够丝滑，即使我已经熟悉了所有的字母区位置，每次想打这两个符号的时候下意识还是会看一下键盘。 </li>
+</ul>
+<p class="note note-success"><strong>使用AHK后：空格+U映射为逗号，空格+O映射为句号，U和O的位置就非常友好了，属于食指和无名指的管辖范围之内，这是除了方向键映射之外我最喜欢的两个按键映射方案了。</strong></p>
+
+<p><strong>4. 其余映射</strong></p>
+<ul>
+<li>Shift：键盘上的一排数字键对应了<code>!@#$%^&amp;*()_+</code>，尤其是写代码的时候，括号是频繁使用的符号，意味着Shift键需要经常去按，长时间使用下来小拇指是比较累的，更何况小拇指还要负责Ctrl键，简直是雪上加霜。经过两年多的使用和调整我只留下了<strong>空格+9 映射左括号和空格+0 映射右括号</strong>，毕竟这两个的使用最为频繁。</li>
+<li>BackSpace和Delete：退格键不用说了，高强度使用的按键之一，同样距离遥远，好在退格键够大，还是比较好用的，但是对于一个追求细节的强迫症来说，多一套方案就多一分效率。<strong>空格+H 映射BackSpace键，空格+B 映射Delete键，是的，现在连删除字符都不需要大幅度移动手了。</strong></li>
+<li>等号键：完全是为了写代码方便，<strong>空格+A 映射=号</strong>  </li>
+</ul>
+<p><strong>5. 传统快捷键映射</strong><br>Windows上的每一个快捷键几乎都有Ctrl的参与（小拇指可太累了），作为一个合格的CV工程师，除了复制粘贴的功夫必须到家，其他技能也不能落下。</p>
+<ul>
+<li>空格+S ：复制</li>
+<li>空格+D ：粘贴</li>
+<li>空格+E ：剪切</li>
+<li>空格+R ：撤回</li>
+<li>空格+Q ：全选</li>
+</ul>
+<h2 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h2><p>最大化，最小化，关闭等操作基本是靠鼠标完成的，但是有些时候键盘来的更快捷</p>
+<ul>
+<li>空格+1：最小化</li>
+<li>空格+2：最大化全屏</li>
+<li>空格+3：切换窗口最大化状态（相当于窗口右上角的第二个按钮）</li>
+<li>空格+4：关闭窗口</li>
+<li>空格+5：置顶/取消置顶当前窗口</li>
+</ul>
+<h2 id="模拟鼠标"><a href="#模拟鼠标" class="headerlink" title="模拟鼠标"></a>模拟鼠标</h2><p>没想到吧，还能移动鼠标指针，这里用大小写锁定键和ijkl配合</p>
+<ul>
+<li>CapLock+i：上移指针</li>
+<li>CapLock+j：左移指针</li>
+<li>CapLock+k：下移指针</li>
+<li>CapLock+l：右移指针</li>
+<li>CapLock+N：左键单击</li>
+<li>CapLock+M：右键单击</li>
+</ul>
+<h2 id="其他自定义功能"><a href="#其他自定义功能" class="headerlink" title="其他自定义功能"></a>其他自定义功能</h2><ul>
+<li>字符串映射：输入指定字符，可以替换为预先设定的字符串，类似于输入法中的快捷短语功能</li>
+<li>音量控制：<strong>把鼠标指针放在任务栏的时候，滑动滚轮就能调节音量！（谁用谁说好）</strong></li>
+<li>媒体控制：当鼠标指针位于任务栏时<ul>
+<li>空格：暂停音乐</li>
+<li>Ctrl：下一首</li>
+<li>Shift：上一首</li>
+</ul>
+</li>
+<li>快捷编辑环境变量：鼠标指针放在任务栏，按H键(再也不用点一堆东西找了)</li>
+<li>自定义操作：利用“鼠标指针位于任务栏”这个条件，可以把各种操作进行扩展，除了基础的媒体控制，也可以快捷打开软件，而不会占用系统热键，比如：当鼠标指针位于任务栏时，按E键打开资源管理器。</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>空格原本不是修饰键，（Ctrl、Shift这些才是），因此需要利用这个脚本把空格键做为修饰键使用，才能配合其他按键使用，具体来说就是当你长按空格键的时候，并不会一致输入空格，而是会等待下一个组合键的按下，如何不按任何键抬起，那么就会输入一个空格。所以，空格的触发时机是抬起的时候而不是在按下的时候，在打游戏的时候一定要先挂起脚本，不然会严重影响操作。</p>
+<p>当然以上所有的功能都可以自定义，不过这套设置大部分地方其实已经非常人性化了，在给舍友分享之后，他迅速上手，并且也成了忠实用户。</p>
+<h1 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h1><h2 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h2><p>在<a target="_blank" rel="noopener" href="https://www.autohotkey.com/">AHK官网</a>可以下载安装，<a target="_blank" rel="noopener" href="https://wyagd001.github.io/zh-cn/docs/Tutorial.htm">官方文档</a>非常详细地介绍了基础用法和进阶用法。安装后会关联.ahk后缀的文本文件，可以用记事本或者其他编辑器打开。想要新建脚本的时候也要以.ahk为后缀。</p>
+<h2 id="脚本运行"><a href="#脚本运行" class="headerlink" title="脚本运行"></a>脚本运行</h2><p>右键.ahk文件点击run script可以运行脚本，没有界面，只会在托盘中多出一个绿色的H图标。<img src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106160835.png" srcset="/img/loading.gif" lazyload height="200"/><br>可以直接编辑当前使用的脚本，挂起或者暂停脚本，不过我发现暂停好像不太管用，一直用的是挂起。可以同时运行多个脚本，如果不介意托盘图标太多的话。<br>为了能开机自启，可以创建脚本文件的快捷方式，把快捷方式复制到Windows的自启目录中(Win+R打开运行窗口，输入shell:startup)。<img src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106162819.png" srcset="/img/loading.gif" lazyload height="500"/>  </p>
+<p>ahk脚本也能脱离安装环境使用，在安装目录下的Compiler目录中，有Ahk2Exe.exe转换程序，可以把脚本转换成对应的exe程序,这样就能拷贝到其他电脑使用，即使其他电脑没有安装AutoHotKey，exe程序的开机自启设置跟上文相同。<br><img src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/20211106163246.png" srcset="/img/loading.gif" lazyload height="400"/>  </p>
+<h1 id="脚本分享"><a href="#脚本分享" class="headerlink" title="脚本分享"></a>脚本分享</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs text">;当重新运行脚本时，不提示，直接替换原来的脚本<br>#SingleInstance force<br><br>;将掩码键改成未分配的按键,避免额外的Ctrl键或alt键<br>#MenuMaskKey vkE8<br><br>;保持大写键禁用（电脑不会提示大写状态，方便开启大写键的映射）<br>SetCapsLockState, AlwaysOff <br><br>;大写键功能<br>;控制光标<br>CapsLock &amp; j:: MouseMove, -40, 0, 0, R  ; 左移光标<br>CapsLock &amp; k:: MouseMove, 0, 40, 0, R  ; 下移光标<br>CapsLock &amp; l:: MouseMove, 40, 0, 0, R  ; 右移光标<br>CapsLock &amp; i:: MouseMove, 0, -40, 0, R ; 上移光标<br>;控制鼠标点击<br>CapsLock &amp; n::Send &#123;LButton&#125; ;点击鼠标左键<br>CapsLock &amp; m::Send &#123;RButton&#125; ;点击鼠标右键<br>CapsLock &amp; u::Send &#123;WheelUp&#125; ;滚轮上划<br>CapsLock &amp; o::Send &#123;WheelDown&#125; ;滚轮下划<br><br>;方便代码注释<br>CapsLock &amp; q::Send ^&#123;/&#125;<br><br>;字符串映射<br>:*:pwdd::123qwe@@@<br><br>;在某些终端中可以用Alt+c/v 复制粘贴<br>;Alt &amp; c::Send ^&#123;Insert&#125;<br>;Alt &amp; v::Send +&#123;Insert&#125;<br><br><br>; 保持原有空格的功能<br>Space::Send &#123;Space&#125;<br>^Space::Send ^&#123;Space&#125;<br>#Space::Send &#123;LWin down&#125;&#123;Space&#125;<br>;^#Space::Send ^#&#123;Space&#125;<br>!Space::Send !&#123;Space&#125;<br>^!Space::Send ^!&#123;Space&#125;<br><br>;  空格和数字键的组合<br>space &amp; 1::WinMinimize,A   ;最小化当前窗口<br>space &amp; 2::WinMaximize, A  ; 最大化当前窗口<br>space &amp; 3::WinRestore, A ;如果当前窗口最大或最小，重置<br>space &amp; 4::Send !&#123;F4&#125; ;Alt+F4<br>space &amp; 5:: Winset, AlwaysOnTop, Toggle, A ;取消或者设置当前窗口置顶<br><br><br>;复制剪切粘贴撤回<br>space &amp; q:: Send ^a ;全选<br>space &amp; s:: Send ^c ;复制<br>space &amp; d:: Send ^v ;粘贴<br>space &amp; e:: Send ^x ;剪切<br>space &amp; r:: Send ^z ;撤回<br><br>;杂项<br>space &amp; t:: Send ^t ;浏览器新建标签页<br>space &amp; w:: Send ^w ;关闭浏览器标签页<br>space &amp; g:: Send #v<br><br>;光标控制<br>space &amp; i:: Send &#123;up&#125;<br>space &amp; j:: Send &#123;left&#125;<br>space &amp; k:: Send &#123;down&#125;<br>space &amp; l:: Send &#123;right&#125;<br><br>space &amp; n:: Send &#123;home&#125; ;定位到行首<br>space &amp; m:: Send &#123;end&#125; ;定位到行尾<br>space &amp; h:: Send &#123;Backspace&#125; ;退格键<br>space &amp; b:: Send &#123;Del&#125; ;删除键<br><br>;写代码用<br>space &amp; 0::Send +0 ;左括号<br>space &amp; 9::Send +9 ;右括号<br>space &amp; o:: Send &#123;.&#125; ;句号<br>space &amp; u:: Send &#123;,&#125; ;逗号<br>space &amp; a:: Send &#123;=&#125; ;等号<br>space &amp; -:: Send &#123;_&#125; ;下划线<br><br>;  文字编辑用<br>#if GetKeyState(&quot;space&quot;, &quot;P&quot;)<br>f &amp; m::Send &#123;Home&#125;+&#123;End&#125;	;空格+F+M 选中一行<br>f &amp; j::Send +&#123;Left&#125; ;实现光标向左选中文字<br>f &amp; l::Send +&#123;Right&#125; ;实现光标向右选中文字<br>f &amp; h::Send ^&#123;Backspace&#125; <br><br>;媒体控制功能<br>;1.自定义函数<br>MouseIsOver(WinTitle) &#123;<br>    MouseGetPos,,, Win<br>    return WinExist(WinTitle . &quot; ahk_id &quot; . Win)<br>&#125;<br>;2.调用函数(当指针在任务栏时：滚轮调整音量；空格暂停音乐；Ctrl下一首；Shift上一首;h打开环境变量)<br>#If MouseIsOver(&quot;ahk_class Shell_TrayWnd&quot;)<br>WheelUp::Send &#123;Volume_Up&#125;<br>WheelDown::Send &#123;Volume_Down&#125;<br>Space::Send &#123;Media_Play_Pause&#125;<br>Ctrl::Send &#123;Media_Next&#125;<br>Shift::Send &#123;Media_Prev&#125;<br>h:: Run SystemPropertiesAdvanced.exe<br><br>return<br><br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/">软件分享</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E9%AB%98/">效率提高</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/16/nginx-%E5%9B%BE%E7%89%87%E7%AD%89%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">nginx-图片等静态资源访问解决方案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/02/%E7%96%AB%E6%83%85%E9%80%9A%E8%87%AA%E5%8A%A8%E5%A1%AB%E6%8A%A5/">
+                        <span class="hidden-mobile">疫情通自动填报</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

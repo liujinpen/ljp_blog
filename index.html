@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tom.png">
+  <link rel="icon" href="/img/tom.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <!-- <strong>L金盆</strong> -->
+      <img src="/img/jinpen.png" srcset="/img/loading.gif" lazyload height="30px" width="ml-auto">
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/earth.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="科学的进步，不过是读大自然写的代码">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/16/%E5%9C%A8CentOS%E4%B8%AD%E4%BD%BF%E7%94%A8Crow-%E5%9F%BA%E4%BA%8EC-%E7%9A%84Web%E6%9C%8D%E5%8A%A1/" target="_self">
+          在CentOS中使用Crow-基于C++的Web服务
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/16/%E5%9C%A8CentOS%E4%B8%AD%E4%BD%BF%E7%94%A8Crow-%E5%9F%BA%E4%BA%8EC-%E7%9A%84Web%E6%9C%8D%E5%8A%A1/" target="_self">
+          
+          
+            
+          
+          前言crow是一个基于C++的web微服务框架，在使用上和python中的flask框架类似，利用它我们可以设计RESTful Api。使用crow需要在CentOS中搭建C++开发环境，安装所需依赖。
+目录
+搭建C++开发环境
+安装crow所需依赖
+测试
+
+1.搭建C++开发环境安装以下工具
+123456yum -y install gccyum -y install gcc-c++yum -y
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-16 10:17" pubdate>
+              2022-04-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C-web/">C++ web</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/07/hello-world/" target="_self">
+          Hello World
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/07/hello-world/" target="_self">
+          
+          
+            
+          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-07 14:51" pubdate>
+              2022-04-07
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/24/Windows-Terminal%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" target="_self">
+          Windows Terminal安装与配置
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/24/Windows-Terminal%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" target="_self">
+          
+          
+            
+          
+          目录
+安装新版Windows Terminal
+安装新版PowerShell
+安装所需模块
+
+1.安装Windows Terminal预览版1.1 安装在Windows商店搜索Windows Terminal，会有两个版本，正式版和预览版。两个版本选择一个即可，直接点击安装。  
+在Windows Terminal中可以打开不同的命令行，如自带的Windows PowerShell，Anacond
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-24 09:41" pubdate>
+              2022-03-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Windows/">Windows</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%99%E7%A8%8B%E8%AE%B0%E5%BD%95/">教程记录</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/24/ArcMap%E6%A0%B9%E6%8D%AE%E8%A1%8C%E6%94%BF%E5%9B%BE%E6%A0%A1%E5%87%86shp%E8%A1%8C%E6%94%BF%E8%BE%B9%E7%95%8C/" target="_self">
+          ArcMap根据行政图校准延安市乡镇shp行政边界
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/24/ArcMap%E6%A0%B9%E6%8D%AE%E8%A1%8C%E6%94%BF%E5%9B%BE%E6%A0%A1%E5%87%86shp%E8%A1%8C%E6%94%BF%E8%BE%B9%E7%95%8C/" target="_self">
+          
+          
+            
+          
+          前言在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。
+目录
+校准
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-24 08:53" pubdate>
+              2021-12-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%9C%B0%E5%9B%BE/">地图</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ArcGIS/">ArcGIS</a>
+            
+              <a href="/tags/%E8%A1%8C%E6%94%BF%E8%BE%B9%E7%95%8C/">行政边界</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/16/nginx-%E5%9B%BE%E7%89%87%E7%AD%89%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+          nginx-图片等静态资源访问解决方案
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/16/nginx-%E5%9B%BE%E7%89%87%E7%AD%89%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+          
+          
+            
+          
+          前言前后端分离项目，或者是更一般的web项目，都有部分业务需要进行图片的展示。比如在列表中显示各种数据的图片，或是用户头像上传，甚至需要上传后回显。利用nginx是现在较为通用的解决方案。
+目录
+图片保存和显示的方式
+配置nginx
+前端逻辑
+后端逻辑
+
+1.图片保存和显示的方式通常，前端选择本地的图片后，发送到后端。后端将图片保存到本地指定目录中，同时在数据库中存入该图片的路径。当前端需要显示时
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-16 17:32" pubdate>
+              2021-12-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Vue/">Vue</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">vue</a>
+            
+              <a href="/tags/nginx/">nginx</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/06/AutoHotKey-%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8/" target="_self">
+          AutoHotKey-提高效率的神器
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/06/AutoHotKey-%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E7%A5%9E%E5%99%A8/" target="_self">
+          
+          
+            
+          
+          简介AutoHotKey简称AHK，是一个脚本语言，可以通过编写脚本执行一些自动化任务，进行按键映射、控制鼠标、管理进程、管理窗口等等，太多了，第一次接触这个软件是看到少数派的一篇文章：如何在打字时，快速移动光标？我整理的一套高效键盘映射方案 ，当时就感觉到这是一个极其强大的工具。在经过两年多的使用和修改后，这个软件已经成了脱离不了的东西。目前我使用到的功能和特性只是冰山一角，但是对效率的提升肉眼
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-06 15:27" pubdate>
+              2021-11-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/">软件分享</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E9%AB%98/">效率提高</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/02/%E7%96%AB%E6%83%85%E9%80%9A%E8%87%AA%E5%8A%A8%E5%A1%AB%E6%8A%A5/" target="_self">
+          疫情通自动填报
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/02/%E7%96%AB%E6%83%85%E9%80%9A%E8%87%AA%E5%8A%A8%E5%A1%AB%E6%8A%A5/" target="_self">
+          
+          
+            
+          
+          目录
+获取提交数据
+编写python代码
+自动执行
+参考
+
+1.获取提交数据疫情通提交一般在手机操作，其实也是web页面。在PC端打开微信中的填报页面，复制链接到浏览器打开，首次进入需要登录，账号密码每个学校不同，根据提示即可。登录后浏览器会记录cookies，里面代表的就是本人身份。F12打开控制台，这里以FireFox为例，填写完正确信息，点击提交后查看网络请求，可以看到请求头：  
+以及请求
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-02 15:11" pubdate>
+              2021-11-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%99%E7%A8%8B%E8%AE%B0%E5%BD%95/">教程记录</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/04/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-%E4%B8%AD%E5%9B%BD%E5%A4%A9%E6%B0%94%E7%BD%91%E7%88%AC%E8%99%AB/" target="_self">
+          天气预报-中国天气网爬虫
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/04/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-%E4%B8%AD%E5%9B%BD%E5%A4%A9%E6%B0%94%E7%BD%91%E7%88%AC%E8%99%AB/" target="_self">
+          
+          
+            
+          
+          前言项目需要获取7日天气预报，免费好用的接口寻觅不到，搜索一番后发现用简单的爬虫可以实现，在完成python版本后，想着能否用java来实现，一番学习后完成了需求，结果如下
+工具准备在Maven项目中添加相应依赖，这里使用httpclient+jsoup的组合来完成httpclient用来发送请求，而jsoup用来解析请求结果两者的详细介绍参考文末引文
+12345678910&lt;depende
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-04 18:33" pubdate>
+              2021-10-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E7%88%AC%E8%99%AB/">java爬虫</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/17/Vue%E5%AE%9E%E7%8E%B0%E7%83%AD%E5%8A%9B%E5%9B%BE%E5%8A%A8%E6%80%81%E7%BC%A9%E6%94%BE/" target="_self">
+          Vue实现热力图动态缩放
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/08/17/Vue%E5%AE%9E%E7%8E%B0%E7%83%AD%E5%8A%9B%E5%9B%BE%E5%8A%A8%E6%80%81%E7%BC%A9%E6%94%BE/" target="_self">
+          
+          
+            
+          
+          前言项目需要，根据积水数据的多少，在页面中进行展示，选用高德热力图api。实现后发现地图的缩放会导致热力图自动更改渲染的颜色，导致预期的效果发生变化，研究文档后实现了动态调整热力图的渲染，保证在不同缩放等级的地图下都能展示预期效果
+使用vue ui命令构建项目，vue版本为2.x，使用axios读取本地积水数据，axios安装命令为vue add axios完整代码先看最后
+1.引入高德js在pu
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-17 17:48" pubdate>
+              2021-08-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Vue/">Vue</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">vue</a>
+            
+              <a href="/tags/%E9%AB%98%E5%BE%B7api/">高德api</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
