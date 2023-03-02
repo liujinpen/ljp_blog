@@ -14,13 +14,13 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="L金盆">
   <meta name="keywords" content="">
   <meta name="description" content="前言在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。 目录 校准">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArcMap根据行政图校准延安市乡镇shp行政边界">
-<meta property="og:url" content="http://example.com/2021/225.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://jinpen.top/2021/225.html">
+<meta property="og:site_name" content="L金盆的个人博客">
 <meta property="og:description" content="前言在开发时，经常需要和地图打交道，比如展示某个区域的边界，一般拿到的数据是shp文件，但是最新的行政图数据往往不好获取。以陕西省延安市为例，第四级行政区的数据，也就是乡镇级的数据，还停留在2010年，然而2015年之后许多地区进行了重新的规划，导致我们的数据需要调整。好在甲方提供了2020年最新的JPG格式的行政区划图，那么能否根据标准的行政区划图来调整我们的shp文件呢，肯定可以。 目录 校准">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.1.png">
@@ -39,13 +39,13 @@
 <meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/2.6.png">
 <meta property="article:published_time" content="2021-12-24T00:53:45.000Z">
 <meta property="article:modified_time" content="2022-04-16T09:15:02.337Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="L金盆">
 <meta property="article:tag" content="ArcGIS">
 <meta property="article:tag" content="行政边界">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/1.1.png">
   
-  <title>ArcMap根据行政图校准延安市乡镇shp行政边界 - Hexo</title>
+  <title>ArcMap根据行政图校准延安市乡镇shp行政边界 - L金盆的个人博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -82,7 +82,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"jinpen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>

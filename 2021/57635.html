@@ -14,13 +14,13 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="L金盆">
   <meta name="keywords" content="">
   <meta name="description" content="前言项目需要获取7日天气预报，免费好用的接口寻觅不到，搜索一番后发现用简单的爬虫可以实现，在完成python版本后，想着能否用java来实现，一番学习后完成了需求，结果如下 工具准备在Maven项目中添加相应依赖，这里使用httpclient+jsoup的组合来完成httpclient用来发送请求，而jsoup用来解析请求结果两者的详细介绍参考文末引文 12345678910&lt;depende">
 <meta property="og:type" content="article">
 <meta property="og:title" content="天气预报-中国天气网爬虫">
-<meta property="og:url" content="http://example.com/2021/57635.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://jinpen.top/2021/57635.html">
+<meta property="og:site_name" content="L金盆的个人博客">
 <meta property="og:description" content="前言项目需要获取7日天气预报，免费好用的接口寻觅不到，搜索一番后发现用简单的爬虫可以实现，在完成python版本后，想着能否用java来实现，一番学习后完成了需求，结果如下 工具准备在Maven项目中添加相应依赖，这里使用httpclient+jsoup的组合来完成httpclient用来发送请求，而jsoup用来解析请求结果两者的详细介绍参考文末引文 12345678910&lt;depende">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/fa89bb7a45b6482fb3835fd79cf16386.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY6YeR55uG,size_20,color_FFFFFF,t_70,g_se,x_16">
@@ -31,12 +31,12 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/6050b0cfe21e4faeb8346d69daadc4a5.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY6YeR55uG,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2021-10-04T10:33:39.000Z">
 <meta property="article:modified_time" content="2022-04-16T09:15:02.352Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="L金盆">
 <meta property="article:tag" content="java爬虫">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/fa89bb7a45b6482fb3835fd79cf16386.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5YiY6YeR55uG,size_20,color_FFFFFF,t_70,g_se,x_16">
   
-  <title>天气预报-中国天气网爬虫 - Hexo</title>
+  <title>天气预报-中国天气网爬虫 - L金盆的个人博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -73,7 +73,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"jinpen.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
