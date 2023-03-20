@@ -16,17 +16,17 @@
   <meta name="description" content="">
   <meta name="author" content="L金盆">
   <meta name="keywords" content="">
-  <meta name="description" content="# 需求 表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。  最终效果图 点击加号图标增加一个下拉框 减号图标删除对应下拉框 下拉框备选项目相同 点击设置动作按钮，弹出可编辑表格，可以为该巡检点位设置多个动作 表格每行内容可编 设别名称下拉框和设备动作下拉框联动 操作按钮可对选项进行上下排序  代码实现 定义表单结构123456789101112131">
+  <meta name="description" content="需求表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。 最终效果图 点击加号图标增加一个下拉框 减号图标删除对应下拉框 下拉框备选项目相同 点击设置动作按钮，弹出可编辑表格，可以为该巡检点位设置多个动作 表格每行内容可编 设别名称下拉框和设备动作下拉框联动 操作按钮可对选项进行上下排序  代码实现 定义表单结构12345678910111213141516">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Element+Vue实现动态表单(多个下拉框组件)">
 <meta property="og:url" content="https://jinpen.top/2023/61898.html">
 <meta property="og:site_name" content="L金盆的个人博客">
-<meta property="og:description" content="# 需求 表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。  最终效果图 点击加号图标增加一个下拉框 减号图标删除对应下拉框 下拉框备选项目相同 点击设置动作按钮，弹出可编辑表格，可以为该巡检点位设置多个动作 表格每行内容可编 设别名称下拉框和设备动作下拉框联动 操作按钮可对选项进行上下排序  代码实现 定义表单结构123456789101112131">
+<meta property="og:description" content="需求表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。 最终效果图 点击加号图标增加一个下拉框 减号图标删除对应下拉框 下拉框备选项目相同 点击设置动作按钮，弹出可编辑表格，可以为该巡检点位设置多个动作 表格每行内容可编 设别名称下拉框和设备动作下拉框联动 操作按钮可对选项进行上下排序  代码实现 定义表单结构12345678910111213141516">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/89ae066b1ace49f0875db810467506da.png">
 <meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/d6194d695a114e4d9ab62e095cd6f129.png">
 <meta property="article:published_time" content="2023-03-01T13:18:42.000Z">
-<meta property="article:modified_time" content="2023-03-19T10:15:45.861Z">
+<meta property="article:modified_time" content="2023-03-20T12:47:31.931Z">
 <meta property="article:author" content="L金盆">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="element ui">
@@ -243,15 +243,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：14 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <meta name="referrer" content="no-referrer"/>
-# 需求
-表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。
-
+              <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>表单的内容为巡检计划，巡检计划可以选择多个巡检点位，每个巡检点位可以选择多个设备和对应操作。</p>
 <h1 id="最终效果图"><a href="#最终效果图" class="headerlink" title="最终效果图"></a>最终效果图</h1><ul>
 <li>点击加号图标增加一个下拉框</li>
 <li>减号图标删除对应下拉框</li>
@@ -325,6 +322,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/1540.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于泛型和通配符的理解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
