@@ -187,6 +187,48 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/53412.html" target="_self">
+          计算机网络笔记（一）
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/53412.html" target="_self">
+          
+          
+            
+          
+          TCP半连接队列和全连接队列
+半连接队列：SYN队列
+全连接队列：accept队列
+
+假设客户端先发起连接，第一次握手后，服务端的内核会将该连接存入半连接队列，在第三次连接完成后内核会把连接从半连接队列移除，然后创建新的完全的连接，并将其添加到 accept 队列，等待进程调用 accept 函数时把连接取出来。
+
+tcp_abort_on_overflow参数可以控制全连接队列满后，服务端对于新
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-28 14:50" pubdate>
+              2023-03-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/1540.html" target="_self">
           关于泛型和通配符的理解
         </a>
@@ -682,61 +724,13 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/59794.html" target="_self">
-          Vue实现热力图动态缩放
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/59794.html" target="_self">
-          
-          
-            
-          
-          前言项目需要，根据积水数据的多少，在页面中进行展示，选用高德热力图api。实现后发现地图的缩放会导致热力图自动更改渲染的颜色，导致预期的效果发生变化，研究文档后实现了动态调整热力图的渲染，保证在不同缩放等级的地图下都能展示预期效果
-使用vue ui命令构建项目，vue版本为2.x，使用axios读取本地积水数据，axios安装命令为vue add axios完整代码先看最后
-1.引入高德js在pu
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-17 17:48" pubdate>
-              2021-08-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Vue/">Vue</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue/">vue</a>
-            
-              <a href="/tags/%E9%AB%98%E5%BE%B7api/">高德api</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
 
 
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
 
 
 
