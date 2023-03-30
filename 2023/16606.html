@@ -24,8 +24,9 @@
 <meta property="og:description" content="已建立的连接再次发送SYN会发生什么？考虑下面的情况： 客户端与服务器已经建立了连接，但是客户端宕机了，上线后又发送了SYN报文，此时会发生什么？ 分析： 客户端宕机，服务器并不知道，因此服务器仍然是Established状态  如果此时服务器有数据要发送，客户端内核发送RST，结束连接。  如果一直没有数据要发送，超过时间后TCP保活机制会发送探测报文，检测到没有存活就释放结束连接。 如果客户端">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/tcp_tw_reuse%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%97%AE%E9%A2%98.drawio.png">
+<meta property="og:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/942c2a1e67224c8c8bd41b13d7c89a96.png">
 <meta property="article:published_time" content="2023-03-30T03:23:41.000Z">
-<meta property="article:modified_time" content="2023-03-30T03:25:51.652Z">
+<meta property="article:modified_time" content="2023-03-30T09:27:09.263Z">
 <meta property="article:author" content="L金盆">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ljp-blog.oss-cn-beijing.aliyuncs.com/tcp_tw_reuse%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%97%AE%E9%A2%98.drawio.png">
@@ -198,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      4.5k 字
     </span>
   
 
@@ -207,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13 分钟
+      14 分钟
     </span>
   
 
@@ -240,7 +241,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 小时前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -395,6 +396,16 @@
 </li>
 </ul>
 <p><strong>如果开启了TCP延迟确认机制（默认开启），且没有数据要发送，那么服务器将要发送的FIN会和第二次挥手的ACK一起发送（第二次挥手的ACK在等待是否有数据要发送），这样就变成了三次挥手。</strong></p>
+<h1 id="服务端在SYN-REVD状态收到数据发生什么？"><a href="#服务端在SYN-REVD状态收到数据发生什么？" class="headerlink" title="服务端在SYN_REVD状态收到数据发生什么？"></a>服务端在SYN_REVD状态收到数据发生什么？</h1><p>第三次握手发送后，客户端就进入Establised状态了，此时可以发送数据。但是如果发送的ACK因为延迟没有到达服务器，此时的服务器还是SYN_REVD状态，服务器将如何处理提前到达的数据？</p>
+<p><img src="https://ljp-blog.oss-cn-beijing.aliyuncs.com/942c2a1e67224c8c8bd41b13d7c89a96.png" srcset="/img/loading.gif" lazyload></p>
+<p>其实，建立连接后，客户端第一次的数据包，<strong>其确认号和序列号与第三次握手的ACK报文一致</strong>。因此，即使第一次发送的数据先于第三次握手，也能正常建立连接，接收数据。</p>
+<p>为什么这个数据包的序列号和确认号和第三次握手一致呢？</p>
+<ul>
+<li>序列号表示自己发送了多少数据&#x3D;上一次发送的序列号+上一次的len（特殊情况，上一次是SYN或FIN改为+1）</li>
+<li>确认号表示自己接收了多少数据，同时也代表下一次期望收到的数据。确认号&#x3D;上一次收到的的报文<strong>序列号+len</strong>。（特殊情况，如果上一次收到的SYN或FIN，改为+1）</li>
+</ul>
+<p>因此，握手后第一次发送的数据包中的序列号&#x3D;上次的序列号+len，上次发送的不是SYN也不是FIN，且len&#x3D;0，所以<strong>第一次发送的数据包中的序列号&#x3D;上次的序列号</strong>。</p>
+<p>确认号同理。</p>
 
             </div>
             <hr>
