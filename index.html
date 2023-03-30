@@ -187,6 +187,49 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/16606.html" target="_self">
+          计算机网络笔记（二）
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2023/16606.html" target="_self">
+          
+          
+            
+          
+          已建立的连接再次发送SYN会发生什么？考虑下面的情况：
+客户端与服务器已经建立了连接，但是客户端宕机了，上线后又发送了SYN报文，此时会发生什么？
+分析：
+客户端宕机，服务器并不知道，因此服务器仍然是Established状态
+
+如果此时服务器有数据要发送，客户端内核发送RST，结束连接。 
+如果一直没有数据要发送，超过时间后TCP保活机制会发送探测报文，检测到没有存活就释放结束连接。
+如果客户端
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-30 11:23" pubdate>
+              2023-03-30
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/53412.html" target="_self">
           计算机网络笔记（一）
         </a>
@@ -204,7 +247,10 @@
 
 假设客户端先发起连接，第一次握手后，服务端的内核会将该连接存入半连接队列，在第三次连接完成后内核会把连接从半连接队列移除，然后创建新的完全的连接，并将其添加到 accept 队列，等待进程调用 accept 函数时把连接取出来。
 
-tcp_abort_on_overflow参数可以控制全连接队列满后，服务端对于新
+全连接队列
+
+
+tcp_abort_on_overflow参数可以控制全连接队列满
         </a>
       </p>
 
@@ -665,58 +711,6 @@ tcp_abort_on_overflow参数可以控制全连接队列满后，服务端对于�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%95%99%E7%A8%8B%E8%AE%B0%E5%BD%95/">教程记录</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/57635.html" target="_self">
-          天气预报-中国天气网爬虫
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/57635.html" target="_self">
-          
-          
-            
-          
-          前言项目需要获取7日天气预报，免费好用的接口寻觅不到，搜索一番后发现用简单的爬虫可以实现，在完成python版本后，想着能否用java来实现，一番学习后完成了需求，结果如下
-工具准备在Maven项目中添加相应依赖，这里使用httpclient+jsoup的组合来完成httpclient用来发送请求，而jsoup用来解析请求结果两者的详细介绍参考文末引文
-12345678910&lt;depende
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-04 18:33" pubdate>
-              2021-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java%E7%88%AC%E8%99%AB/">java爬虫</a>
             
           </div>
         
